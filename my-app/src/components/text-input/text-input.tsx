@@ -1,39 +1,45 @@
 import React, { FC, useState } from 'react';
-import { AutoComplete, Button } from 'antd';
+import { Input, Button } from 'antd';
 
-const mockVal = (str: string, repeat: number = 1) => {
-  return {
-    value: str.repeat(repeat),
+interface TodoFromProps {
+  onAdd(title: string):void
+}
+
+
+const Complete: FC<TodoFromProps> = (props) => {
+  const [title, setTitle] = useState('');
+  const changeHandler = (value: any) => {
+    console.log('value', value);
+    setTitle(value); 
   };
-};
-const Complete: FC = () => {
-  const [value, setValue] = useState('');
-  const [options, setOptions] = useState<{ value: string }[]>([]);
-  const onSearch = (searchText: string) => {
-    setOptions(
-      !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)],
-    );
+
+  const pushTask = () => {
+    console.log(title);
+    props.onAdd(title);
+    setTitle('');
+  }
+
+  const keyPressHandler = (event: React.KeyboardEvent) => {
+    
+    if(event.key === 'Enter') {
+      pushTask();
+    }
+
   };
-  const onSelect = (data: string) => {
-    console.log('onSelect', data);
-  };
-  const onChange = (data: string) => {
-    setValue(data);
-  };
+
   return (
     <>
     
     <br />
-      <AutoComplete
-        options={options}
-        style={{ width: 200 }}
-        onSelect={onSelect}
-        onSearch={onSearch}
+      <Input
+        onChange={(e) => changeHandler(e.target.value)}
+        onKeyPress={keyPressHandler}
         placeholder="input here"
+        value={title || ' '}
       />
       <br />
       <br />
-      <Button type="primary" >Push</Button>
+      <Button type="primary" onClick={pushTask}>Push</Button>
     </>
   );
 };
