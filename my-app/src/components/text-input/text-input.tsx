@@ -9,12 +9,10 @@ interface TodoFromProps {
 const Complete: FC<TodoFromProps> = (props) => {
   const [title, setTitle] = useState('');
   const changeHandler = (value: any) => {
-    console.log('value', value);
     setTitle(value); 
   };
 
   const pushTask = () => {
-    console.log(title);
     props.onAdd(title);
     setTitle('');
   }
