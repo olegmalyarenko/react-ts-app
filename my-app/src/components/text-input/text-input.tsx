@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Input, Button } from 'antd';
+import './text-input.css';
 
 interface TodoFromProps {
   onAdd(title: string):void
@@ -26,10 +27,11 @@ const Complete: FC<TodoFromProps> = (props) => {
   };
 
   return (
-    <>
+    <div className='input-block'>
     
     <br />
       <Input
+        className="input"
         onChange={(e) => changeHandler(e.target.value)}
         onKeyPress={keyPressHandler}
         placeholder="input here"
@@ -38,7 +40,7 @@ const Complete: FC<TodoFromProps> = (props) => {
       <br />
       <br />
       <Button type="primary" onClick={pushTask}>Push</Button>
-    </>
+    </div>
   );
 };
 

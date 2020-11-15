@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Menu, Row, Col } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 
 const Navigation: FC = () => {
@@ -18,17 +19,17 @@ const Navigation: FC = () => {
         
         <Col span={4}>
         <Menu.Item key={Math.random() * Date.now()}>
-          <a target="_blank" rel="noopener noreferrer">
-            Список
-          </a>
+          <NavLink to='/'>
+            Список дел
+          </NavLink>
         </Menu.Item>
         </Col>
 
         <Col span={4}>
         <Menu.Item key={Math.random() * Date.now()}>
-          <a target="_blank" rel="noopener noreferrer">
+          <NavLink to='/about'>
             О нас
-          </a>
+          </NavLink>
         </Menu.Item>
         </Col>
       

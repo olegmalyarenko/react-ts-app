@@ -1,6 +1,7 @@
 import React, { FC } from 'react'; 
 import ITodo  from '../../interfaces';
 import TodoListItem from '../todo-list-item';
+import './todo-list.css';
 type TodoListProps = {
     todos: ITodo[],
     onToggle: (id:number) => void,
@@ -8,7 +9,7 @@ type TodoListProps = {
 }
     const TodoList: FC<TodoListProps> = ({todos, onToggle, onRemove}) => {
     return (
-    <ul>
+    <ul className="flex">
         {
             todos.map((todo) => {
                 return <TodoListItem todo={todo} onToggle={onToggle} onRemove={onRemove} />

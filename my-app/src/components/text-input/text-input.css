@@ -1,0 +1,9 @@
+.input {
+  max-width: 600px;
+}
+.input-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
