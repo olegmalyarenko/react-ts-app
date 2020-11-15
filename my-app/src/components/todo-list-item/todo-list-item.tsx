@@ -16,7 +16,7 @@ const TodoListItem: FC<ITodoListItem> = ({todo, onToggle, onRemove }) => {
     return (
         <li className="todo" key={todo.id}>
             <label>
-                <input type="checkbox" checked={todo.completed} onClick={() => onToggle(todo.id)}/>
+                <input type="checkbox" checked={todo.completed? true : false } onClick={() => onToggle(todo.id)}/>
                     <span>{todo.title}</span>
                     <DeleteOutlined onClick={() => onRemove(todo.id)}/>
             </label>
