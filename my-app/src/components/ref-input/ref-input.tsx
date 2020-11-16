@@ -1,24 +1,47 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, RefObject, useRef, useState } from 'react';
 import { Input } from 'antd';
 
+interface TodoFromProps {
+    onAdd(title: string):void
+}
 
-const TextInputBottom: FC = () => {
-    //const ref = useRef<HTMLInputElement>(null);
-    //const keyPressHandler = (event: React.KeyboardEvent) => {
-    //if(event.key === 'Enter') {
-    //console.log(ref.current!.value);
-      //  ref.current!.value = ''
-    //}
-    //};
+
+const TextInputBottom: FC<TodoFromProps> = (props) => {
+    const ref = useRef() as RefObject<Input>;
+    const [title, setState] = useState('');
+
+    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(`event change: ${event.target.value}, ref val: ${ref.current!.state.value}`);
+        setState(ref.current!.state.value);
+        console.log('title', title);
+        
+    };
+
+    const pushTask = () => {
+        console.log('add', title);
+        if(title) {
+        props.onAdd(title);
+        setState(' ');
+        console.log('remove title', title);
+        }
+    }
+
+    const keyPressHandler = (event: React.KeyboardEvent) => {
+    if(event.key === 'Enter') {
+        
+        pushTask();    
+    }
+    };
 
 return (
     <>
     
     <br />
     <Input
-        //ref={ref}
+        ref={ref}
         type="text"
-        //onKeyPress={(event) => keyPressHandler(event)}
+        onChange={changeHandler}
+        onKeyPress={keyPressHandler}
         placeholder="input here"
         
     />

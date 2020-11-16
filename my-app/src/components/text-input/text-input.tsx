@@ -8,9 +8,10 @@ interface TodoFromProps {
 
 
 const Complete: FC<TodoFromProps> = (props) => {
-  const [title, setTitle] = useState('');
-  const changeHandler = (value: any) => {
-    setTitle(value); 
+  const [title, setTitle] = useState<string>('');
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    setTitle(event.target.value); 
   };
 
   const pushTask = () => {
@@ -32,7 +33,7 @@ const Complete: FC<TodoFromProps> = (props) => {
     <br />
       <Input
         className="input"
-        onChange={(e) => changeHandler(e.target.value)}
+        onChange={changeHandler}
         onKeyPress={keyPressHandler}
         placeholder="input here"
         value={title || ' '}

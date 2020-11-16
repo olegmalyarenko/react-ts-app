@@ -33,9 +33,8 @@ export const TodoListPage : FC = () => {
         return todo;
     }))
     }
-  
     const removeItem = (id:number) => {
-      setTodos(prev => prev.filter(todo => todo.id !== id ));
+        setTodos(prev => prev.filter(todo => todo.id !== id ));
     }
     return (
         <>
